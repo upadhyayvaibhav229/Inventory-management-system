@@ -1,0 +1,28 @@
+{% extends 'partials/base.html' %}
+
+{% block title %}Logout Page{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card"> <!-- Add vertical padding -->
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0 px-0">Logout</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="alert alert-danger">
+                            <p>Are you sure you want to log out?</p>
+                            
+                        </div>
+
+                    </form>
+                    <a href="{% url 'user-login' %}">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'partials/base.html' %} 
+
+{% block title %}Home page{% endblock %}
+
+{%block content %}
+
+{% if user.is_authenticated and user.is_staff and user.is_superuser %} 
+
+{%  include 'partials/topnaves.html' %}
+<div class="container">
+  <div class="row my-5">
+    <div class="col-md-6 my-4">
+      <div class="bg-white">
+        <div class="card-body">
+          <canvas id="myChart1" width="400" height="300"></canvas>
+          <script>
+            var ctx = document.getElementById("myChart1").getContext("2d");
+            var myChart1 = new Chart(ctx, {
+              type: "pie",
+              data: {
+                labels: [
+                  "Product 1",
+                  "Product 2",
+                  "Product 3",
+                  "product 4",
+                  "product 5",
+                ],
+                datasets: [
+                  {
+                    label: "Number of Products",
+                    data: [10, 20, 30, 40, 50],
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(225, 206, 86, 1)",
+                      "rgba(125, 206, 860, 1)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(155, 206, 86, 1)",
+                      "rgba(155, 206, 816, 1)",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
+                },
+              },
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 my-4">
+      <div class="bg-white">
+        <div class="card-body">
+          <canvas id="myChart" width="400" height="300"></canvas>
+          <script>
+            var ctx = document.getElementById("myChart").getContext("2d");
+            var myChart = new Chart(ctx, {
+              type: "bar",
+              data: {
+                labels: ["Order 1", "Order 2", "Order 3", "order 4", "order 5"],
+                datasets: [
+                  {
+                    label: "Orders",
+                    data: [5, 10, 25, 20, 15],
+                    backgroundColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(100, 206, 86, 1)",
+                      "rgba(100, 96, 86, 1)",
+                    ],
+                    borderColor: [
+                      "rgba(255, 99, 132, 1)",
+                      "rgba(54, 162, 235, 1)",
+                      "rgba(255, 206, 86, 1)",
+                      "rgba(100, 206, 86, 1)",
+                      "rgba(100, 96, 86, 1)",
+                    ],
+                    borderWidth: 1,
+                  },
+                ],
+              },
+              options: {
+                scales: {
+                  yAxes: [
+                    {
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    },
+                  ],
+                },
+              },
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Graph -->
+{%  else %}
+{%  include 'dashboard/staff_index.html' %}
+{% endif %}
+{% endblock %}
